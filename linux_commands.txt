@@ -1,0 +1,319 @@
+/*********************
+	List Disk Info
+*********************/
+-- List drives in tree structure
+lsblk
+
+-- List drives with detailed info
+lshw -C disk
+
+-- List more stats, such as used space
+df -h
+
+/**********************
+	Setup New Disks
+**********************/
+1. Format disk
+parted /dev/<disk> = start parted disk formatter
+	mklabel gpt
+	unit TB
+	mkpart primary 0 100%
+
+2. Create Filesystem
+mkfs.ext4 -L /<label_name> /dev/<parition> - make new filesytem on partition with label
+
+3. Create Mount Point
+mkdir /media/<mount_point>
+z
+-- Relabel Partition
+e2label /dev/<partition> "<label_name>"
+
+/*********************************
+	Mounting/Unmounting Drives
+*********************************/
+-- Mount partition
+mount /dev/<partition> /media/<mount_point>
+
+-- Unmount partition
+umount /media/<partition>
+
+-- Mount network drive
+mount -t cifs -o username=<share_user>,password=<share_password> //<server>/<share>/ /<mount_point>
+
+-- Automount Drive
+1. List UUIDs for drives
+blkid
+
+2. Add entry to file system table
+echo "UUID=<uuid> </mount_path> ext4 defaults" >> /etc/fstab
+
+/*************************
+	Networking Related
+*************************/
+-- Allow udp/tcp packets on port 22
+ufw allow 22
+
+-- List network adapter info
+ifconfig
+
+-- Display listening and connected sockets
+netstat -ntap
+
+-- Analysze packets on network interface
+tcpdump -i <ethernet_controller> icmp and icmp[icmptype]=icmp-echo
+
+/*****************
+	Networking
+*****************/
+-- Monitor incoming packets
+tcpdump -i <ethernet_adapter> icmp and icmp[icmptype]=icmp-echo
+
+-- Display IP address
+hostname -I
+
+-- Restart network
+service networking restart
+
+-- Edit network adapter settings in /etc/network/interfaces to static IP
+auto eth0
+iface eth0 inet static
+address 192.168.1.152
+netmask 255.255.255.0
+gateway 192.168.1.1
+
+
+/**********************
+	Package Related
+**********************/
+-- Advanced Package Tool
+apt-get update
+apt-get upgrade
+apt-get install <package_name>
+apt-get remove <package_name>
+apt-get purge <package_name>
+
+-- Install local package
+dpkg -i <package_name>
+
+/********************************
+	Samba Server Folder Setup
+********************************/
+1. Edit samba file & Add folder
+nano /etc/samba/smb.conf
+
+	[<folder_name>]
+	path = /home/<user_name>/<folder_name>
+	valid users = <user_name>
+	read only = no
+
+2. Restart Service
+service smbd restart
+
+3. Test samba file for errors
+testparm
+
+4.1 List all shares
+smbclient -L //<HOST_IP_OR_NAME>/<folder_name> -U <user>
+
+4.2 Connect on client
+smbclient //<HOST_IP_OR_NAME>/<folder_name> -U <user>
+
+4.3 Example
+unix: //192.168.0.37/media -U zontzip
+Windows: \\192.168.0.37\media
+
+-- Add user
+smbpasswd -a <user_name>
+
+-- Add Hostname to /etc/hosts
+<ip_address> <host_name>
+
+/*******************************
+	Mounting Network Drives
+*******************************/
+
+-- Mounting network drive to fstab
+1. Create credentials file
+nano ~/.smbcredentials
+
+2. Add use info to file
+username=<share_user>
+password=<share_password>
+
+3. Change permissions
+chmod 600 ~/.smbcredentials
+
+4. Add fstab entry
+//<server>/<share_name> /<mount_point> cifs credentials=/home/<user>/.smbcredentials,iocharset=utf8,sec=ntlm 0 0
+
+/************************
+	Directory Related
+************************/
+–- change directory (typing by iteslf returns you to home dir)
+cd
+
+–- Make a new directory
+mkdir
+
+-– Print working directory
+pwd
+
+-– Delete a directory
+rm -rf
+
+/*******************
+	File related
+*******************/
+-- Create a file
+touch
+
+-- Move or rename a file
+mv
+
+-– List files in directory [list all, list permissions]
+ls –a –l
+
+-- Copy a file
+cp [options] <directory> <destination>
+
+	-- Recursively copy files
+	[-r]
+
+–- Change file permissions
+chmod
+
+-- Delete a file
+rm
+
+-- Pipe command output to a file
+[user_commands] > file.html
+
+/*******************
+	Disk related
+*******************/
+-- Disk usage
+du
+
+-- Free disk space
+df
+
+-- Search filesystem for file
+find [directory] -name "<filename>"
+
+-- Test disk speed of harddrive
+sudo hdparm -Tt /dev/<partition>
+
+/**********************
+	Process related
+**********************/
+-- Process status: list running processes
+ps
+
+-– Lists processor activity in real-time
+top
+
+-- Display relatime network info
+netsat
+
+-– Kills specified process
+kill <pid>
+
+-- List all python processes
+ps -fA | grep python
+
+/*****************
+	VI related
+*****************/
+-- Open a file in vi [read only]
+vi [view] <filename>
+
+-- Save work [to a file]
+:w [filename]
+
+-- Save work and quit
+:wq
+
+-- Abort changes and quit
+:q!
+
+/**********
+	SSH
+**********/
+-- SSH to remote host
+ssh [username@]<remote_host>
+
+-- Add a new ssh connection for quick access
+vi  ~/.ssh/config
+
+/************
+	Users
+************/
+-- Switch user, (-) is root
+su <username>
+
+-- Add user
+useradd [options] <username>
+
+-- Add password
+passwd <username>
+
+-- Delete user
+userdel [options] <username>
+
+	-- Delete home directory
+	[-l]
+
+-- Make user sudoer
+usermod -aG sudo <username>
+
+-- List users
+cat /etc/passwd
+
+-- List groups
+groups
+
+/**************
+	Proxmox
+**************/
+-- List containers
+pct list
+
+-- Enter container
+pct enter <container_id>
+
+-- Stop container
+pct stop <container_id>
+
+-- Start container
+pct start <container_id>
+
+/***********
+	LXC
+***********/
+-- Add entry to container config for mount
+1. Open container conf file
+nano /etc/pve/lxc/<container_id>.conf
+
+2. Add entry for mount (N.B. do not put a '/' before the guest mount point)
+lxc.mount.entry: <mount_path_in_host> <mount_point_in_guest> none bind 0 0
+
+-- Start container (Same as pct list)
+lxc-start -n <vmid>
+
+-- Start container in foreground mode for logging
+lxc-start -n <vmid> -F
+
+/****************
+	Services
+****************/
+-- List all services
+service --status-all
+
+-- Restart a service
+service <service_name> restart
+
+/***********
+	Apps
+***********/
+-- imwheel
+imwheel -b "4 5"
