@@ -1,0 +1,37 @@
+/***************************
+	Simple Node Server
+***************************/
+-- Install simple http server
+npm install http-server -g
+
+-- Run server in current directory
+http-server
+
+/*********************
+	Basic Commands
+*********************/
+-- Install a package and update package.json
+npm install <module_name> --save
+
+-- Uninstall a package
+npm uninstall <module_name>
+
+-- List everything installed in current directory
+
+-- Set --save as default for npm install
+npm config set save true
+
+-- Generate package.json based on Q's in current directory
+npm init
+
+-- Run test suite
+npm test
+
+-- List outdated libraries
+npm outdated
+
+-- Christmas tree
+npm xmas
+
+-- Update a package
+npm update <module_name>
