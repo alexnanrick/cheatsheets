@@ -1,0 +1,96 @@
+/***************************
+	Main Docker Elements
+***************************/
+
+1. docker containers: directories containing everything-your-application
+2. docker images: snapshots of containers or base OS (e.g. Ubuntu) images
+3. Dockerfiles: scripts automating the building process of images
+
+-- List all commands
+docker 
+
+-- Show version information
+docker version 
+
+-- Display information on a container or image
+docker inspect <image id> (or) <container id> 
+
+/********************
+	Image related
+********************/
+-- Give an image a name
+docker tag <image id>	
+
+-- Search for a docker image
+docker search <query> 
+
+-- Download an image
+docker pull <image name>
+
+-- List all images 
+docker images
+
+-- Build an image 
+docker build <image name> . 
+
+-- Commit docker state
+docker commit <container id> <image name> 
+
+-- Push image
+docker push <username/image name>
+
+-- Delete a docker image
+docker rmi <image name>
+
+/************************
+	Container related
+************************/
+-- Create a docker container
+docker create [options] <image>
+
+-- List all running containers
+docker ps [options]
+	
+	-- Show the latest created container
+	[-l] 
+
+	-- Show all containers ever created
+	[-a] 
+	
+-- Run image and create container
+docker run [options] <container id>
+
+	-- Detached mode (daemon), all I/O is done over network 
+	[-d] 
+
+-- Elegantly remove all containers with status e.g. exited 
+docker rm $(docker ps -q -f status=<exited>)
+
+/*************
+	daemon
+*************/
+-- Restart a running or stopped container
+docker restart <container id> 
+
+-- Stop a containers process from running
+docker stop <container id> 
+
+-- Delete a container
+docker rm <container id>
+
+-- Access docker file structure 
+docker exec -it
+
+-- Print out logs  
+docker logs [options] 
+	
+	-- Update and display logs
+	[-f]
+
+/**********************
+	Network related	
+**********************/
+-- Get docker machine IP
+docker-machine ip default
+
+
