@@ -10,19 +10,20 @@ http-server
 /*********************
 	Basic Commands
 *********************/
+-- Generate package.json based on Q's in current directory
+npm init
+
 -- Install a package and update package.json
 npm install <module_name> --save
+
+-- Update a package
+npm update <module_name>
 
 -- Uninstall a package
 npm uninstall <module_name>
 
 -- List everything installed in current directory
-
--- Set --save as default for npm install
-npm config set save true
-
--- Generate package.json based on Q's in current directory
-npm init
+npm ls
 
 -- Run test suite
 npm test
@@ -33,5 +34,8 @@ npm outdated
 -- Christmas tree
 npm xmas
 
--- Update a package
-npm update <module_name>
+/*********************
+	Project Setup
+*********************/
+-- Install all packages listed in package.json
+npm install
