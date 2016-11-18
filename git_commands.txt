@@ -1,0 +1,77 @@
+/*********************
+	Setup New Repo
+*********************/
+1. Transform current directory into a Git repository
+git init
+
+2. Add remote server location to local git repo 
+git remote add origin <address>
+
+3. Pull changes from remote ‘origin’ master branch
+git pull origin master
+
+/****************************
+	Push to Remote Origin
+****************************/
+1. Add changes to staging, [a] all, [--all] all excluding deleted
+git add <filename> [-A] (or) [--all]
+
+2. Commit changes to local git with message
+git commit -m <message>
+
+3. Push changes to remote origin
+git push
+
+/***************
+	Branches
+***************/
+1. Switch to master branch (Always do before branching so branch is based on master)
+git checkout master
+
+2. Create new topic branch and switch to it
+git checkout -b <branchname>
+
+3. Push the branch to remote repo (subsequent pushes can omit this)
+git push -u origin <branchname>
+
+4. Merge specified branch with master (after master checkout)
+git merge <branch name>
+
+-- Show all branches
+git branch
+
+-- Delete a branch
+git branch -d <branch-name>
+
+-- Delete a remote branch
+git push origin :<branchName>
+
+/**************
+	History
+**************/
+-- Difference between commits [optional file]
+git diff hash1 hash2 [path-to-file]
+
+-- Show changes in commit [just file names]
+git show hash [--name-only]
+
+/*************
+	Extras
+*************/
+-- Rollback to commit 
+git reset --hard <hash>
+
+-- Clone a remote repository
+git clone <address>
+
+-- List the status of all files in a repo 
+git status
+
+-- Drop all local changes and fetch the latest version
+git fetch origin
+
+-- Modify previous commit message
+git commit --amend
+
+-- Undo the previous commit
+git revert HEAD^
