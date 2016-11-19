@@ -39,3 +39,6 @@ npm xmas
 *********************/
 -- Install all packages listed in package.json
 npm install
+
+-- Start webpack node server thing
+npm start
