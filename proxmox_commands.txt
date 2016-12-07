@@ -1,0 +1,30 @@
+/**************
+	Proxmox
+**************/
+-- List containers
+pct list
+
+-- Enter container
+pct enter <container_id>
+
+-- Stop container
+pct stop <container_id>
+
+-- Start container
+pct start <container_id>
+
+/***********
+	LXC
+***********/
+-- Add entry to container config for mount
+1. Open container conf file
+nano /etc/pve/lxc/<container_id>.conf
+
+2. Add entry for mount (N.B. do not put a '/' before the guest mount point)
+lxc.mount.entry: <mount_path_in_host> <mount_point_in_guest> none bind 0 0
+
+-- Start container (Same as pct list)
+lxc-start -n <vmid>
+
+-- Start container in foreground mode for logging
+lxc-start -n <vmid> -F

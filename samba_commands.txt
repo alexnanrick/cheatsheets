@@ -1,0 +1,32 @@
+/********************************
+	Samba Server Folder Setup
+********************************/
+1. Edit samba file & Add folder
+nano /etc/samba/smb.conf
+
+	[<folder_name>]
+	path = /home/<user_name>/<folder_name>
+	valid users = <user_name>
+	read only = no
+
+2. Restart Service
+service smbd restart
+
+3. Test samba file for errors
+testparm
+
+4.1 List all shares
+smbclient -L //<HOST_IP_OR_NAME>/<folder_name> -U <user>
+
+4.2 Connect on client
+smbclient //<HOST_IP_OR_NAME>/<folder_name> -U <user>
+
+4.3 Example
+unix: //192.168.0.37/media -U zontzip
+Windows: \\192.168.0.37\media
+
+-- Add user
+smbpasswd -a <user_name>
+
+-- Add Hostname to /etc/hosts
+<ip_address> <host_name>

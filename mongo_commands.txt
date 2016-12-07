@@ -39,3 +39,108 @@ sudo systemctl status mongodb
 
 -- Enable auto start
 sudo systemctl enable mongodb
+
+/*****************
+	Basic Commands
+*****************/
+-- Print current database
+db
+
+-- Show databases
+show dbs
+
+-- Switch database (Create if not exists)
+use <db_name>
+
+-- Load script
+load("<file_path>")
+
+/*************
+ 	Collections
+*************/
+-- Show collections
+show collections
+
+-- Delete collection
+db.<collection>.drop()
+
+-- Remove document from collection
+db.<collection>.remove(<key>: <value>)
+
+/*************
+ 	Selections
+*************/
+-- Search for values
+db.<collection>.find({<key>: "<value>"}, {<optional_key_filter> : <optional_key_value>, ...});
+
+-- OR operator
+db.<collection>.find({<key>: <value>, $or: [{<key>: <value>}]}).pretty()
+
+-- Sorting documents
+.sort({<key>: <sort_type>, <key>: <sort_type>, ...})
+
+	-- Sort types
+	Ascending: -1
+	Descending: 1
+
+-- Limit data returned
+.limit(<number_of_documents>)
+
+-- Skip over a number of documents
+.skip(<number_of_documents>)
+
+/*************
+ 	Updates
+*************/
+-- Update a specified value of a document
+db.<collection>.update({<key>: <value>}, {$set: {<key>: <new_value>}})
+
+-- Conditional operators
+
+	-- Value must be less than the conditional
+	$lt
+	db.<collection>.find({<key> : {$lt : <value>}})
+
+	-- Value must be greater than the conditional
+	$gt
+	db.<collection>.find({<key> : {$gt : <value>}})
+
+	-- Value must be less than or equal to the conditiona
+	$lte
+	db.<collection>.find({<key> : {$lte : <value>}})
+
+	-- Value must be greater than or equal to the conditional
+	$gte
+	db.<collection>.find({<key> : {$gte : <value>}})
+
+	-- Value must be in a set of conditionals
+	$in
+	db.<collection>.find({<key> : {$in : [<value>, <value>, ...] }})
+
+	-- Value must NOT be in a set of conditionals
+	$nin
+	db.<collection>.find({<key> : {$nin : [<value>, <value>, ...] }})
+
+	-- Value must be equal to a conditional
+	$not
+
+/*************
+ 	Pipeline
+*************/
+-- Pass the results of function 2 to function 1
+db.<collection>.aggregate([ function1, function2])
+
+-- Aggregation operators
+
+	-- $sort
+	db.<collection>.aggregate([ { $sort : {<key> : 1} }, { $limit : 5 } ]);
+
+	-- $limit
+	db.<collection>.aggregate([ { $limit : 5 } ]);
+
+	-- $skip
+
+	-- $match
+
+-- Output to collection
+{$out : "<new_collection>"}

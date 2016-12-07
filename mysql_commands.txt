@@ -1,0 +1,14 @@
+/***********
+	MySQL
+***********/
+-- Login as root
+mysql -u root -p
+
+-- Show databases
+SHOW DATABASES;
+
+-- Create database
+CREATE DATABASE <database_name>;
+
+-- Drop database
+DROP DATABASE <database_name>;
