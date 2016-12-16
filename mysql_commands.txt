@@ -1,14 +1,43 @@
 /***********
-	MySQL
+	Basics
 ***********/
+-- Install
+sudo apt-get install mysql-server
+
 -- Login as root
 mysql -u root -p
 
+/***************
+	DB Related
+***************/
 -- Show databases
-SHOW DATABASES;
+show databases;
 
 -- Create database
-CREATE DATABASE <database_name>;
+create database <database_name>;
 
 -- Drop database
-DROP DATABASE <database_name>;
+drop database <database_name>;
+
+-- Use database
+use <database_name>;
+
+/*************************
+	Fix permissions error
+*************************/
+1. Connect as root
+sudo mysql -u root
+
+2. Check accounts in db
+select User, Host from mysql.user;
+
+3 - Delete current root account
+drop user 'root'@'localhost';
+
+4 - Recreate user
+create user 'root'@'%' identified by '';
+
+5 - Give permissions to user and flush
+grant all privileges *.* to 'root'@'%';
+
+flush priveleges;

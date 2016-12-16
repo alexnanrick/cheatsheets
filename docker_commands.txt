@@ -1,7 +1,6 @@
 /***************************
 	Main Docker Elements
 ***************************/
-
 1. docker containers: directories containing everything-your-application
 2. docker images: snapshots of containers or base OS (e.g. Ubuntu) images
 3. Dockerfiles: scripts automating the building process of images
@@ -92,5 +91,3 @@ docker logs [options]
 **********************/
 -- Get docker machine IP
 docker-machine ip default
-
-

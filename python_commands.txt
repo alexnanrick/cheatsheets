@@ -1,0 +1,15 @@
+/****************
+	Virtualenv
+****************/
+-- Install virtualenv
+pip install virtualenv
+
+1. Create a virtual enviroment for a project
+cd my_project_folder
+virtualenv <venv_name>
+
+2. Activate virtualenv (All pip installs will install into venv)
+source venv/bin/activate
+
+3. Deactivate virtualenv
+deactivate

@@ -62,9 +62,6 @@ netstat -ntap
 -- Analysze packets on network interface
 tcpdump -i <ethernet_controller> icmp and icmp[icmptype]=icmp-echo
 
-/*****************
-	Networking
-*****************/
 -- Monitor incoming packets
 tcpdump -i <ethernet_adapter> icmp and icmp[icmptype]=icmp-echo
 
@@ -81,7 +78,6 @@ address 192.168.1.152
 netmask 255.255.255.0
 gateway 192.168.1.1
 
-
 /**********************
 	Package Related
 **********************/
@@ -89,16 +85,19 @@ gateway 192.168.1.1
 apt-get update
 apt-get upgrade
 apt-get install <package_name>
-apt-get remove <package_name>
+apt-get remove (--purge) <package_name>
 apt-get purge <package_name>
 
 -- Install local package
 dpkg -i <package_name>
 
+-- Remove leftover data afterremove
+sudo apt-get autoremove
+sudo apt-get autoclean
+
 /*******************************
 	Mounting Network Drives
 *******************************/
-
 -- Mounting network drive to fstab
 1. Create credentials file
 nano ~/.smbcredentials
