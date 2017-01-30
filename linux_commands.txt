@@ -181,10 +181,13 @@ top
 -- Display relatime network info
 netsat
 
--– Kills specified process
+-- Kills specified process id
 kill <pid>
 
--- List all python processes
+-- Kills specified process(es) containing name
+pkill <process_name>
+
+-- EXAMPLE: List all python processes
 ps -fA | grep python
 
 /*****************
