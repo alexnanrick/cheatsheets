@@ -1,0 +1,41 @@
+/******************
+  Postgres setup
+*******************/
+-- Check postgres is running
+pg_isready
+
+/*************************
+  Postgres user account
+**************************/
+-- Switch to postgres linux user account
+sudo -i -u postgres
+
+-- Access postgres prompt
+psql
+
+-- Quit prompt
+\q
+
+-- Connect directly to postgres user prompt
+sudo -u postgres psql
+
+/*********
+  Users
+*********/
+-- Create new user
+sudo -u postgres createuser --interactive
+
+-- Add password to user account (from postgres sudo psql prompt!)
+ALTER USER <user_name> PASSWORD <'password'>;
+
+/**************
+  DB Config
+**************/
+-- Create a db
+createdb <db_name>
+
+-- Connect to a DB
+psql --dbname <db_name>
+
+-- Restore a DB from a dump
+pg_restore --no-owner --dbname <empty_db_name> <dump_file>
