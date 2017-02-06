@@ -13,3 +13,9 @@ source venv/bin/activate
 
 3. Deactivate virtualenv
 deactivate
+
+-- Create requirements file
+pip freeze > requirements.txt
+
+-- Install packages from file
+pip install -r requirements.txt
