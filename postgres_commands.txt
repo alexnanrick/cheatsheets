@@ -39,3 +39,9 @@ psql --dbname <db_name>
 
 -- Restore a DB from a dump
 pg_restore --no-owner --dbname <empty_db_name> <dump_file>
+
+/****************
+  SQL Commands
+****************/
+-- Create database
+CREATE DATABASE <db_name>

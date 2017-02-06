@@ -1,0 +1,14 @@
+/***********
+  Basics
+***********/
+-- Compile C program
+gcc <c_file.c> -p <exe_name>
+
+-- Start GDB
+gdb <exe_name>
+
+/****************
+  Breakpoints
+****************/
+-- insert break point at line
+break <line_no>
