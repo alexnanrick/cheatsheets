@@ -1,0 +1,26 @@
+/**********
+  Models
+**********/
+-- Create a model
+sequelize model:create --name <model_name> --attributes <attr_name>:<attr_type>,...
+
+/*************
+  Migrations
+*************/
+-- Migrate database
+sequelize db:migrate
+
+-- Undo last migration
+sequelize db:migrate undo
+
+/***********
+  Seeding
+***********/
+-- Create seed file
+sequelize seed:create
+
+-- Seed database
+sequelize db:seed:all
+
+-- Undo last seed
+sequelize db:seed:undo:all
