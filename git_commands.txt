@@ -75,3 +75,6 @@ git commit --amend
 
 -- Undo the previous commit
 git revert HEAD^
+
+-- Store credentials
+git config --global credential.helper store

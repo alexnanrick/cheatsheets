@@ -1,3 +1,9 @@
+/*********
+  Basics
+*********/
+-- Initialize the project
+sequelize init 
+
 /**********
   Models
 **********/
@@ -7,11 +13,11 @@ sequelize model:create --name <model_name> --attributes <attr_name>:<attr_type>,
 /*************
   Migrations
 *************/
--- Migrate database
+-- Run pending migrations
 sequelize db:migrate
 
--- Undo last migration
-sequelize db:migrate undo
+-- Revert the last migration run
+sequelize db:migrate:undo
 
 /***********
   Seeding
