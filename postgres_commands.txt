@@ -19,6 +19,9 @@ psql
 -- Connect directly to postgres user prompt
 sudo -u postgres psql
 
+-- List user accounts
+\du
+
 /*********
   Users
 *********/

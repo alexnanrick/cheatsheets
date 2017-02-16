@@ -22,6 +22,15 @@ drop database <database_name>;
 -- Use database
 use <database_name>;
 
+/********
+	Create User
+*********/
+-- Create user (localhost can be replaced with '%' for any host)
+CREATE USER '<username>'@'localhost' IDENTIFIED BY '<password>';
+
+-- Grant privleges
+GRANT ALL PRIVILEGES ON *.* TO '<username>'@'localhost' WITH GRANT OPTION;
+
 /*************************
 	Fix permissions error
 *************************/
