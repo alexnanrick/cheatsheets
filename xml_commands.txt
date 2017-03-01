@@ -1,0 +1,2 @@
+-- Validate XML
+xmllint --noout --schema <xml_schema.xsd> <xml_file.xml>
