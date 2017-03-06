@@ -1,2 +1,5 @@
--- Validate XML
+-- Validate XML against XSD schema
 xmllint --noout --schema <xml_schema.xsd> <xml_file.xml>
+
+-- Validate XSL against XML doc
+xsltproc <xsl_file.xsl> <xml_file.xml>
