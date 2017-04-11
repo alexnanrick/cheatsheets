@@ -190,6 +190,9 @@ pkill <process_name>
 -- EXAMPLE: List all python processes
 ps -fA | grep python
 
+-- List all fd's associated with a process
+lsof -p <PID>
+
 /*****************
 	VI related
 *****************/
