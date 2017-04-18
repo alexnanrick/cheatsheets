@@ -7,6 +7,9 @@ python -m django --version
 -- Start Django Project
 django-admin startproject <project_name>
 
+-- Create admin
+python manage.py createsuperuser
+
 /***********
 	Server
 ***********/
@@ -16,14 +19,17 @@ python manage.py runserver
 /****************
 	DB Related
 ****************/
--- Make migrations from models
+1. Make migrations from models
 manage.py makemigrations
 
--- Migrate DB
+2. Migrate DB
 manage.py migrate
 
 -- View SQL of migrate
 manage.py sqlmigrate <app_name> <migration_no>
+
+-- Check for errors before pushing
+python manage.py check
 
 /**********
 	Shell

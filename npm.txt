@@ -42,3 +42,12 @@ npm install
 
 -- Start webpack node server thing
 npm start
+
+/******************
+	Permissions
+******************/
+-- Find NPM directory
+npm config get prefix
+
+-- Change NPM directory owner (presumed to be lib/node_modules)
+sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}

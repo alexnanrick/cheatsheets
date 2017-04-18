@@ -1,0 +1,15 @@
+-- Create cordova project
+cordova create <project_dir> <project_url> <project_name>
+
+-- Add platform (version is optional)
+cordova platforms add <platform_name>@<version> 
+
+-- Build project
+cordova build <platform_name>
+
+-- Run project
+cordova run <platform_name>
+
+-- Add plugins
+cordova plugin add cordova-plugin-console
+cordova plugin add cordova-plugin-device
