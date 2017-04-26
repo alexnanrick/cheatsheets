@@ -1,0 +1,26 @@
+/************
+	Basics
+************/
+-- Check ionic
+ionic info
+
+-- Create an Ionic 2 app (using optional default template)
+ionic start --v2 <app_name> <template>
+
+-- Run app for browser dev
+ionic serve
+
+-- Add platform
+ionic platform add <platform_name>
+
+-- Build project
+ionic build <platform_name>
+
+-- Run project
+ionic run <platform_name>
+
+/***************
+	Development
+***************/
+-- Generate a new page
+ ionic generate page <page_name>
