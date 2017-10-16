@@ -5,7 +5,31 @@
 sudo apt-get install mysql-server
 
 -- Login as root
-mysql -u root -p
+mysql -u root
+
+/*********************
+	Python Link Setup
+*********************/
+-- Install python dev and mysql dev client
+sudo apt-get install python-dev python3-dev libmysqlclient-dev
+
+-- Install python packages
+pip install pymysql mysqlclient
+
+/*********************
+	Create Database
+*********************/
+1. Login as root
+mysql -u root
+
+2. Create a user
+CREATE USER '<username>'@'localhost' IDENTIFIED BY '<password>';
+
+3. Create database
+CREATE DATABASE <name_of_db>;
+
+4. Grant priveleges
+GRANT ALL PRIVILEGES ON <name_of_db> . * TO '<username>'@'localhost';
 
 /***************
 	DB Related
@@ -21,32 +45,3 @@ drop database <database_name>;
 
 -- Use database
 use <database_name>;
-
-/********
-	Create User
-*********/
--- Create user (localhost can be replaced with '%' for any host)
-CREATE USER '<username>'@'localhost' IDENTIFIED BY '<password>';
-
--- Grant privleges
-GRANT ALL PRIVILEGES ON *.* TO '<username>'@'localhost' WITH GRANT OPTION;
-
-/*************************
-	Fix permissions error
-*************************/
-1. Connect as root
-sudo mysql -u root
-
-2. Check accounts in db
-select User, Host from mysql.user;
-
-3 - Delete current root account
-drop user 'root'@'localhost';
-
-4 - Recreate user
-create user 'root'@'%' identified by '';
-
-5 - Give permissions to user and flush
-grant all privileges *.* to 'root'@'%';
-
-flush priveleges;
