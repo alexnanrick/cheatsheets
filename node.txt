@@ -1,0 +1,89 @@
+/***************************
+	Simple Node Server
+***************************/
+-- Install simple http server
+npm install -g http-server 
+
+-- Run server in current directory
+http-server
+
+/*********************
+	Basic Commands
+*********************/
+-- Generate package.json
+npm init
+
+-- Install a package and update package.json
+npm install <package_name> --save
+
+	-- Install a package globally 
+	npm install -g <package_name>
+
+-- Update a package
+npm update <package_name>
+
+-- Uninstall a package
+npm uninstall <package_name>
+
+-- List everything installed in current directory
+npm ls
+
+-- Run test suite
+npm test
+
+-- List outdated libraries
+npm outdated
+
+-- Christmas tree
+npm xmas
+
+/*********************
+	Project Setup
+*********************/
+-- Install all packages listed in package.json
+npm install
+
+-- Start webpack node server thing
+npm start
+
+/******************
+	Permissions
+******************/
+-- Find NPM directory
+npm config get prefix
+
+-- Change NPM directory owner (presumed to be lib/node_modules)
+sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+
+/****************************************
+	NVM (Node.js version manager) Setup
+****************************************/
+-- Install software packages to build source packages
+sudo apt-get install build-essential libssl-dev
+
+1. Pull nvm installation script
+curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh -o install_nvm.sh
+
+2. Run the script
+bash install_nvm.sh
+
+3. Refresh current session
+source ~/.profile
+
+-- List Node.js versions available
+nvm ls-remote
+
+-- Install node (Choose latest version from list)
+nvm install 8.9.4
+
+-- Check node version
+node -v
+
+-- Check current node version 
+nvm current
+
+-- Deactivate current node
+nvm deactivate
+
+-- Remove node version (if current version, first deactivate)
+nvm unintsall <node_version> 
