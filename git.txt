@@ -85,5 +85,5 @@ git commit --amend
 -- Undo the previous commit
 git revert HEAD^
 
--- Store credentials
-git config --global credential.helper store
+-- Store credentials for a month
+git config --global credential.helper 'cache --timeout=2592000'
