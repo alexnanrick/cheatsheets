@@ -56,6 +56,15 @@ git diff hash1 hash2 [path-to-file]
 git show hash [--name-only]
 
 /*************
+	Identity
+*************/
+-- Set email
+git config --global user.email "you@example.com"
+
+-- Set username
+git config --global user.name "Your Name"
+
+/*************
 	Extras
 *************/
 -- Rollback to commit 
