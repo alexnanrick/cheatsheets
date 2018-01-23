@@ -254,7 +254,13 @@ service --status-all
 service <service_name> restart
 
 /***********
-	Apps
+	nmap
 ***********/
--- imwheel
-imwheel -b "4 5"
+-- Scan IP range on local network (using sudo)
+sudo nmap -sP 192.168.1.0/24 
+
+-- Check server status without logging action
+sudo nmap -sS <ip_address/hostname> 
+
+-- Ping target and find open ports
+sudo nmap -vv <ip_address/hostname> 
